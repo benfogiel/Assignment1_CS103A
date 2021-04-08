@@ -1,0 +1,15 @@
+//main
+// Author: Benjamin Fogiel
+#include<iostream>
+
+class Transaction {
+public:
+
+private:
+    Transaction ∗prev; // points previous transaction
+    int amount; // amount o f money that has been transferred
+    string sender; // sender of money
+    string receiver; // receiver of money
+    string nonce; // random string that will be used to simulate PoW
+    string hash; // hash of content of previous transaction
+};
