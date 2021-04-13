@@ -22,7 +22,7 @@ int main() {
 	Transaction t;
 
 	while (input != 4){
-	cout << "Welcome to the transaction-chain application.... \n1) Add a transaction to the chain.\n2) Find balance of a person.\n3) Print the chain.\n4) Exit.\nWhich operation do you want to make? (1,2,3,4):" << endl;
+	cout << "Welcome to the transaction-chain application....\n1) Add a transaction to the chain.\n2) Find balance of a person.\n3) Print the chain.\n4) Exit.\nWhich operation do you want to make? (1,2,3,4):" << endl;
 	cin >> input;
 
 	if (input == 1) {
