@@ -99,8 +99,7 @@ void Transaction::add(int a, string s, string r){
 	//Create nonce
 	string am = to_string(b->amount);
         string cat = am + s + r + b->hash;
-        string nonce = "a";
-	srand (time(NULL));
+        string nonce;
 
         while(sha256(cat + nonce).back() != '0'){
 		nonce = random_string(2);
