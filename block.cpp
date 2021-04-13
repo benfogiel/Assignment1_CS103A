@@ -62,9 +62,7 @@ string sha256(const string str)
     {
         ss << hex << setw(2) << setfill('0') << (int)hash[i];
     }
-    string s = ss.str();
-    s.back() = '0';
-    return s;
+    return ss.str();
 }
 
 void Transaction::add(int a, string s, string r){
