@@ -87,6 +87,7 @@ void Transaction::add(int a, string s, string r){
 	if (head == nullptr && tail == nullptr) {
 		head = b;
 		tail = b;
+		b->hash = "NULL";
 	} else {
 		tail->next = b;
 		b->prev = tail;
