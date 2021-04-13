@@ -60,7 +60,7 @@ string sha256(const string str)
 
 std::string random_string(std::size_t length)
 {
-    const std::string CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const std::string CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
 
     std::random_device random_device;
     std::mt19937 generator(random_device());
