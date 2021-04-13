@@ -38,7 +38,7 @@ std::ostream& operator<<(std::ostream &os, const Transaction &l) {
 }
 
 void Transaction::print() const{
-	cout << *this;
+	cout << *this << endl;
 }
 
 //returns a hash given a string
