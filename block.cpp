@@ -27,19 +27,11 @@ Transaction::~Transaction() {
 // << operator to print transactions
 std::ostream& operator<<(std::ostream &os, const Transaction &l) {
 	Transaction::Block *c = l.head;
-	int sum = 0;
 
 	while (c != nullptr){
 		os << "Amount: " << c->amount << "\n" << "Sender: " << c->sender 
 			<< "\n" << "Receiver: " << c->receiver << "\n" << "Nonce: "
-			<< c-> nonce << endl;
-	       	for(int i=0; i<=100; i++){
-			sum|=c->hash[i];
-		}
-		if (sum == 0) cout << "Hash: NULL" << endl;
-		else cout << "Hash: " << c->hash << endl;
-		sum = 0;
-
+			<< c-> nonce << "\nHash: " << c->hash << endl;
 		c = c -> next;
 	}
 	return os;
@@ -69,31 +61,29 @@ void Transaction::add(int a, string s, string r){
 	Block *b = new Block;
 
 	b->amount = a;
-	strcpy(b->sender, s.c_str());
-	strcpy(b->receiver, r.c_str());
+	b->sender = s;
+	b->receiver = r;
 
 	if (head == nullptr && tail == nullptr) {
 		head = b;
 		tail = b;
-		memset(b->hash,0,100);
 	} else {
 		tail->next = b;
 		b->prev = tail;
 		tail = b;
-		strcpy(b->hash, hash(this).c_str());
+		b->hash = hash(this);
 	}
 	
 
 	//Nonce Hash
 	string am = to_string(b->amount);
-        string send(b->sender), rec(b->receiver), ha(b->hash);
-        string cat = am + send + rec + ha;
+        string cat = am + s + r + b->hash;
         string nonce = "a";
 
         while(sha256(cat + nonce).back() != '0'){
                 nonce = rand()%26+97;
         }
-        strcpy(b->nonce, nonce.c_str());
+        b->nonce = nonce;
 }
 
 
@@ -103,14 +93,13 @@ string Transaction::hash(Transaction *t){
 	Transaction:Block *b = t->tail;
 	Block *p = b->prev;
 	string a = to_string(p->amount);
-	string s(p->sender), r(p->receiver), h(p->hash), n(p->nonce); 
-	string cat = a + s + r + h + n;
+	string cat = a + p->sender + p->receiver + p->hash + p->nonce;
 
 	return sha256(cat);
 }
 
 int Transaction::GetBalance(string person){
-	Block *current = tail;
+	Block *current = head;
 	char strArr[person.length() + 1];
 	bool matchS = true; 
 	bool matchR = true; 

@@ -28,10 +28,10 @@ private:
 		Block* prev; // points previous transaction
 		Block* next;
 	       	int amount; // amount o f money that has been transferred
-		char sender[100]; // sender of money
-		char receiver[100]; // receiver of money
-		char nonce[100]; // random string that will be used to simulate PoW
-		char hash[100]; // hash of content of previous transaction
+		string sender; // sender of money
+		string receiver; // receiver of money
+		string nonce; // random string that will be used to simulate PoW
+		string hash; // hash of content of previous transaction
 	};
 	Block *head;
 	Block *tail;	
