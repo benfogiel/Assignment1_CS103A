@@ -122,23 +122,11 @@ string Transaction::hash(Transaction *t){
 
 int Transaction::GetBalance(string person){
 	Block *current = head;
-	char strArr[person.length() + 1];
-	bool matchS = true; 
-	bool matchR = true; 
 	int balance = 50;
 
-	strcpy(strArr, person.c_str());
-
 	while (current != NULL){
-		for(int i = 0; i < person.length()+1; i++){
-			if (strArr[i] != current->receiver[i]) matchR = false;
-			if (strArr[i] != current->sender[i]) matchS = false;
-			if (!matchR && !matchS) break;
-		}
-		if (matchR) balance += current->amount;
-		if (matchS) balance -= current->amount;
-		matchR = true;
-		matchS = true;
+		if (person == current->sender) balance -= current->amount;
+		if (person == current->receiver) balance += current->amount;
 		current = current->next;
 	}
 	return balance;
