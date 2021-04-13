@@ -75,13 +75,13 @@ void Transaction::add(int a, string s, string r){
 	}
 	
 
-	//Nonce Hash
+	//Create nonce
 	string am = to_string(b->amount);
         string cat = am + s + r + b->hash;
         string nonce = "a";
 
         while(sha256(cat + nonce).back() != '0'){
-                nonce = rand()%26+97;
+                nonce = rand()%26+97 + rand()%26+97;
         }
         b->nonce = nonce;
 }
