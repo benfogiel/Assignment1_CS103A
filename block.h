@@ -3,8 +3,8 @@
 #include<iostream>
 #include<cstring>
 
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef TRANSACTION_H
+#define TRANSACTION_H
 
 using namespace std;
 
@@ -17,10 +17,12 @@ public:
 	void add(int a, string s, string r);
 	int GetBalance(string person);
 	void print() const;
+	string hash(Transaction *b);
 
 	friend std::ostream& operator<<(std::ostream &os, const Transaction &l);
+	Transaction &operator=(const Transaction &other); // copy assignment
 
-private:
+private:	
 	struct Block
 	{
 		Block* prev; // points previous transaction

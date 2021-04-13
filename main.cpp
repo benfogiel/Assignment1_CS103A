@@ -14,23 +14,6 @@ using namespace std;
 // When compiling this file use:
 // g++ -o main main.cpp -lssl -lcrypto
 
-string sha256(const string str)
-{
-    unsigned char hash[SHA256_DIGEST_LENGTH];
-    SHA256_CTX c;
-    SHA256_Init(&c);
-    SHA256_Update(&c, str.c_str(), str.size());
-    SHA256_Final(hash, &c);
-    stringstream ss;
-    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++)
-    {
-        ss << hex << setw(2) << setfill('0') << (int)hash[i];
-    }
-    string s = ss.str();
-    s.back() = '0';
-    return s;
-}
-
 int main() {
 	int input = 0;
 
@@ -61,7 +44,7 @@ int main() {
 		cout << "Please type name (case-sensitive)" << endl;
 		cin >> person;
 
-		t.GetBalance(person);
+		cout << t.GetBalance(person) << endl;
 	}
 
 	if(input == 3) t.print();
