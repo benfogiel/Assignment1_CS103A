@@ -60,7 +60,7 @@ string sha256(const string str)
 
 std::string random_string(std::size_t length)
 {
-    const std::string CHARACTERS = "123456789abcdefghijklmnopqrstuvwxyz";
+    const std::string CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
 
     std::random_device random_device;
     std::mt19937 generator(random_device());
@@ -98,7 +98,7 @@ void Transaction::add(int a, string s, string r){
 
 	//Create nonce
 	string am = to_string(b->amount);
-        string cat = am + s + r + b->hash;
+        string cat = am + s + r;
         string nonce;
 
         while(sha256(cat + nonce).back() != '0'){
